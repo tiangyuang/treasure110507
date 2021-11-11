@@ -2,11 +2,13 @@ from azure.cognitiveservices.vision.customvision.prediction import CustomVisionP
 from msrest.authentication import ApiKeyCredentials
 import time
 import urllib.request
-# from flask import Flask
-class getdata:
-    def __init__(self,result):
-        self.result=result
-        
+from flask import Flask
+
+from datastore import datastore
+
+   
+def getData(photo):     
+    
     start=time.time()
 
     # 傳入prediction-key及endpoint
@@ -16,7 +18,7 @@ class getdata:
     # 設定project.id, publish_iteration_name, 圖片位置及名稱
     PROJECT_ID = 'bc1eede9-2056-44bc-afa1-4aafc69fab3c'
     publish_iteration_name = 'Iteration1'
-    url="https://treasureblob.blob.core.windows.net/treasurecontainer/d5.jpg"
+    url="https://treasureblob.blob.core.windows.net/treasurecontainer/"+photo
     imgFile="D:/Treasure110507/picture-testing/sample.jpg"
     urllib.request.urlretrieve(url, imgFile)
 
@@ -53,6 +55,5 @@ class getdata:
     end=time.time()
     total=end-start
     print(total)
+    datastore(result(), imgFile, url)
 
-    def test():
-        print("i'm test")

@@ -1,14 +1,15 @@
-from flask import Flask,request
-from getdata import test
+from flask import Flask, request
+from getdata import getData
 
 app = Flask(__name__)
 
-@app.route("/uhhhh",methods=["POST"])
-def hello_world():
-    return "test"
+# @app.route("/uhhhh",methods=["POST"])
+# def hello_world():
+#     return "test"
 
-@app.route("/",methods=["POST"])
-def tet():
-    content = request.json
-    test()
-    return content
+@app.route("/")
+def index():
+    photo = request.args.get('photo')
+    getData(photo)
+
+    return photo
