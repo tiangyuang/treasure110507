@@ -12,11 +12,11 @@ def getData(photo):
     start=time.time()
 
     # 傳入prediction-key及endpoint
-    credentials = ApiKeyCredentials(in_headers={"Prediction-key": '2f526f1de6384a51b6db8de11c8e44d8'})
-    predictor = CustomVisionPredictionClient(endpoint='https://westus2.api.cognitive.microsoft.com/', credentials=credentials)
+    credentials = ApiKeyCredentials(in_headers={"Prediction-key": 'ae5d89cda9ab489487077626758c7c4b'})
+    predictor = CustomVisionPredictionClient(endpoint='https://treasureprediction.cognitiveservices.azure.com/', credentials=credentials)
 
     # 設定project.id, publish_iteration_name, 圖片位置及名稱
-    PROJECT_ID = 'bc1eede9-2056-44bc-afa1-4aafc69fab3c'
+    PROJECT_ID = '01b046a9-37fd-4ba1-af59-b5e6760a4cdf'
     publish_iteration_name = 'Iteration1'
     url="https://treasureblob.blob.core.windows.net/treasurecontainer/"+photo
     imgFile="D:/Treasure110507/picture-testing/sample.jpg"
