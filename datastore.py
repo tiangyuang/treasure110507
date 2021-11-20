@@ -8,7 +8,7 @@ def datastore(result, imgFile, url):
     #計時開始
     start=time.time()
     #資料庫連線
-    db=pymysql.connect(host="treasuredb.mysql.database.azure.com",user="ntubimdtreasure@treasuredb",passwd="Treasure110507",db="treasure",port=3306,charset='utf8')
+    db=pymysql.connect(host="treasuredb2.mysql.database.azure.com",user="joe21255797",passwd="Treasure110507",db="treasuredb2",port=3306,charset='utf8')
     cursor=db.cursor()
 
     #流水號
