@@ -19,7 +19,6 @@ def getData(photo):
     PROJECT_ID = '01b046a9-37fd-4ba1-af59-b5e6760a4cdf'
     publish_iteration_name = 'Iteration1'
     url="https://treasureblob.blob.core.windows.net/treasurecontainer/"+photo+".jpg"
-    print(url)
     imgFile="./pic/sample.jpg"
     urllib.request.urlretrieve(url, imgFile)
 
@@ -40,15 +39,15 @@ def getData(photo):
         # 顯示結果
         def result():
             for prediction in results.predictions:
-                if prediction.tag_name=="玻璃":
+                if prediction.tag_name=="Glass":
                     return("a")
-                elif prediction.tag_name=="塑膠":
+                elif prediction.tag_name=="Plastic":
                     return("b")
-                elif prediction.tag_name=="紙容器":
+                elif prediction.tag_name=="PC":
                     return("c")
-                elif prediction.tag_name=="鐵鋁":
+                elif prediction.tag_name=="IA":
                     return("d")
-                elif prediction.tag_name=="電池":
+                elif prediction.tag_name=="Battery":
                     return("f")
                 else:
                     return("e")

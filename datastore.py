@@ -29,8 +29,13 @@ def datastore(result, imgFile, url):
     sqlcode = ('INSERT INTO treasure_sub_record (Sub_Serial_number , Sub_Recycling_number , Sub_Type_number , Sub_Get_points , Sub_Picture) '
                'VALUES (%d,"%s","%s",%.2f,"%s")')
 
+    #目前使用者
+    SSnsql=("SELECT max(Record_Recycling_number) FROM treasure.treasure_recycling_record")
+    cursor.execute(SSnsql)
+    SSn = cursor.fetchall()[0][0]
+    
     # 資料內容
-    data = (sn, 5, result, gt, url)
+    data = (sn, SSn, result, gt, url)
     cursor.execute(sqlcode % data)
 
     print(data)
