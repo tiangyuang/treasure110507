@@ -13,3 +13,6 @@ def index():
     getData(photo)
 
     return photo
+@app.route("/")
+def test():
+    return "yusiang is good and smart"
