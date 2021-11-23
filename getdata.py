@@ -17,20 +17,10 @@ def getData(photo):
 
     # 設定project.id, publish_iteration_name, 圖片位置及名稱
     PROJECT_ID = '01b046a9-37fd-4ba1-af59-b5e6760a4cdf'
-    publish_iteration_name = 'Iteration1'
+    publish_iteration_name = 'Iteration2'
     url="https://treasureblob.blob.core.windows.net/treasurecontainer/"+photo+".jpg"
     imgFile="./pic/sample.jpg"
     urllib.request.urlretrieve(url, imgFile)
-
-
-    #-----------------------
-    # 產生Flask物件
-    #-----------------------
-    # app = Flask(__name__)
-
-    # @app.route('/')
-    # def home():
-    #     return ('')
 
     # 預測
     with open(imgFile, 'rb') as image_contents:
