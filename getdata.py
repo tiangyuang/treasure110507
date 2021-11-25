@@ -5,7 +5,7 @@ import urllib.request
 from flask import Flask
 
 from datastore import datastore
-from responseresult import responsersult
+#from responseresult import responsersult 
    
 def getData(photo):     
     
@@ -46,5 +46,5 @@ def getData(photo):
     total=end-start
     print(total)
     datastore(result(), imgFile, url)
-    responsersult(result())
+#    responsersult(result())
 
