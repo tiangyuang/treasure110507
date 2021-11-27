@@ -7,9 +7,7 @@ COM_PORT = 'COM10'  # 請自行修改序列埠名稱
 BAUD_RATES = 9600
 ser = serial.Serial(COM_PORT, BAUD_RATES)
 
-# try:
-    # while True:
-        # 接收用戶的輸入值並轉成小寫
+
 def responsersult(result):
     try:
         if result == 'a':
@@ -38,10 +36,6 @@ def responsersult(result):
             sleep(0.5)            
         else:
             print('指令錯誤…')
-
-        # while ser.in_waiting:
-        #     mcu_feedback = ser.readline().decode()  # 接收回應訊息並解碼
-        #     print('控制板回應：', mcu_feedback)
             
     except KeyboardInterrupt:
         ser.close()
