@@ -12,7 +12,7 @@ def datastore(result, imgFile, url):
     # 資料庫連線
     db = pymysql.connect(host="treasuredb2.mysql.database.azure.com", user="joe21255797",
                         passwd="Treasure110507", database="treasure", port=3306, ssl={'ca': 'DigiCertGlobalRootCA.crt.pem'})
-    #db = pymysql.connect(host="127.0.0.1", user="root", passwd="0123456789", database="treasure", port=3306})
+#    db = pymysql.connect(host="192.168.50.45", user="root", passwd="0123456789", database="treasure", port=3306)
     cursor = db.cursor()
 
     # 流水號

@@ -5,7 +5,8 @@ import urllib.request
 from flask import Flask
 
 from datastore import datastore
-#from responseresult import responsersult 
+from responseresult import responsersult 
+from scrollresult import scrollresult
    
 def getData(photo):     
     
@@ -18,8 +19,9 @@ def getData(photo):
     # 設定project.id, publish_iteration_name, 圖片位置及名稱
     PROJECT_ID = '01b046a9-37fd-4ba1-af59-b5e6760a4cdf'
     publish_iteration_name = 'Iteration2'
-    url="https://treasureblob.blob.core.windows.net/treasurecontainer/"+photo+".jpg"
+    url="https://treasureblob.blob.core.windows.net/treasurecontainer/"+photo
     imgFile="./pic/sample.jpg"
+    print(url)
     urllib.request.urlretrieve(url, imgFile)
 
     # 預測
@@ -46,5 +48,5 @@ def getData(photo):
     total=end-start
     print(total)
     datastore(result(), imgFile, url)
-#    responsersult(result())
-
+    responsersult(result())
+    scrollresult(result())
