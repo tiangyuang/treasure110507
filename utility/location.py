@@ -10,7 +10,7 @@ def location(user_lat, user_lng):
 
     for i in range(len(datas)):
         no, station, address, mcode, lat, lng, url = datas[i]
-
+        
         lat = float(lat)
         lng = float(lng)
         user_lat = float(user_lat)
@@ -81,15 +81,15 @@ def location(user_lat, user_lng):
             })
 
     #更新資料
-    with open('src\json\location.json', 'r', encoding='utf-8') as file:
+    with open('json/location.json', 'r', encoding='utf-8') as file:
         data = json.load(file)
         data["body"]['contents'] = div
 
     #寫入json
-    with open('src\json\location.json', 'w', encoding='utf-8') as file:
+    with open('json/location.json', 'w', encoding='utf-8') as file:
         json.dump(data, file)
 
-    search_location = json.load(open('src\json\location.json','r',encoding='utf-8'))
+    search_location = json.load(open('json/location.json','r',encoding='utf-8'))
 
     return search_location
 

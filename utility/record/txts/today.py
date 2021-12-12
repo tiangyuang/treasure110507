@@ -164,14 +164,14 @@ def __json(line_id):
         }
         )
 
-    with open('src/json/record_today.json', 'r', encoding='utf-8') as file:
+    with open('treasure110507/json/record_today.json', 'r', encoding='utf-8') as file:
         data = json.load(file)
         data['contents'] = div
 
-    with open('src/json/record_today.json', 'w', encoding='utf-8') as file:
+    with open('treasure110507/json/record_today.json', 'w', encoding='utf-8') as file:
         json.dump(data, file)
 
     search_record = json.load(
-        open('src/json/record_today.json', 'r', encoding='utf-8'))
+        open('treasure110507/json/record_today.json', 'r', encoding='utf-8'))
 
     return search_record

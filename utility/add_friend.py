@@ -6,7 +6,7 @@ from utility import DB
 # //Line[加入好友]
 def confirm_add():
     confirm_add = json.load(
-        open('src/json/confirm_add.json', 'r', encoding='utf-8'))
+        open('treasure110507/json/confirm_add.json', 'r', encoding='utf-8'))
     return confirm_add
 
 # //填寫基本資料json介面

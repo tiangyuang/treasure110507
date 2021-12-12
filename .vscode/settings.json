@@ -1,0 +1,5 @@
+{
+    "python.analysis.extraPaths": [
+        "./costum_vision"
+    ]
+}

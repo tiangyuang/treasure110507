@@ -163,11 +163,11 @@ for i in range(len(month_record)):
         "width": "25%"
     })
 
-with open('src/json/record_month.json', 'r', encoding='utf-8') as file:
+with open('treasure110507/json/record_month.json', 'r', encoding='utf-8') as file:
     data = json.load(file)
     # data['contents'][0]['header']['contents'][0]['contents'][2]['text'] = record_sum_point(line_id)
     # data['contents'][0]['body']['contents'] = div
     data['header']['contents'][0]['contents'][2]['text'] = '1.15'
     # print(data['body']['contents'])
-# with open('src/json/record_week.json', 'w', encoding='utf-8') as file:
+# with open('treasure110507/json/record_week.json', 'w', encoding='utf-8') as file:
 #     json.dump(data, file)

@@ -13,7 +13,7 @@ def acc(line_id):
     pie.draw_pie()
 
     record_acc = json.load(
-        open('src/json/record_acc.json', 'r', encoding='utf-8'))
+        open('treasure110507/json/record_acc.json', 'r', encoding='utf-8'))
 
     imagemap_today = ImagemapSendMessage(
         base_url='https://i.imgur.com/g0WeLP1.png',

@@ -12,7 +12,7 @@ def month(line_id):
     pie.draw_pie()
 
     record_today = json.load(
-        open('src/json/record_month.json', 'r', encoding='utf-8'))
+        open('treasure110507/json/record_month.json', 'r', encoding='utf-8'))
 
     imagemap_today = ImagemapSendMessage(
         base_url='https://i.imgur.com/jHrl9VA.png',

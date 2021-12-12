@@ -1,7 +1,9 @@
-import qrcode,random
 from linebot.models import *
-from utility import DB
+import qrcode,random
 import zxing
+
+from utility import DB
+from utility import open_door
 
 
 # //資料庫取得mcode 製作QRcode
@@ -77,19 +79,21 @@ def open_camera():
 
 # //解讀 userQR
 def decodeQR(line_id,message_content):
-    with open('src/static/qr_img/1.jpg', 'wb') as fd:
+    with open('static/qr_img/1.jpg', 'wb') as fd:
         for chunk in message_content.iter_content():
             fd.write(chunk)
 
     reader = zxing.BarCodeReader()
-    barcode = reader.decode('src/static/qr_img/1.jpg')
+    barcode = reader.decode('static/qr_img/1.jpg')
 
     return line_id,barcode.parsed
 
 
 # //透過Line_id檢查是否有此user 確認DB有沒有此會員
 def check_user_db(line_id):
+    print('ooooooooooooooooooooooooooooooo-------')
     check = DB.run("SELECT Member_LINEid FROM treasure.treasure_member where Member_LINEid = '%s'" %(line_id),'2')
+    print('ooooooooooooooooooooooooooooooo')
     if len(check) == 1:
         return True
 
@@ -105,6 +109,7 @@ def add_record(line_id,mcode,recycling_time):
         print(recycling_number,location_number)
 
         DB.run('INSERT INTO treasure_recycling_record (Record_Recycling_number , Record_LINEid , Record_Location_number , Record_Recycling_time)' 'VALUES (%d,"%s",%d,"%s")' %(recycling_number,line_id,location_number,recycling_time))
+        open_door.door()
     else:
         return 'hhhhhhh'
 

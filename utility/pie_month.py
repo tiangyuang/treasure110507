@@ -59,10 +59,10 @@ for t in percent_text:
 
 
 # 畫出圓餅圖
-plt.savefig(os.path.join('src\static\pie', line_id+ptime+".jpg"))
+plt.savefig(os.path.join('treasure110507\static\pie', line_id+ptime+".jpg"))
 
 
 
-# fileTest = ("src/static/pie/p1.jpg")
+# fileTest = ("treasure110507/static/pie/p1.jpg")
 # time.sleep(5)
 # os.remove(fileTest)

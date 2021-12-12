@@ -90,4 +90,4 @@ class Pie:
             t.set_size(16)
 
         # 畫出圓餅圖
-        plt.savefig(os.path.join('src\static\pie', self.line_id+ptime+".jpg"))
+        plt.savefig(os.path.join('treasure110507\static\pie', self.line_id+ptime+".jpg"))
