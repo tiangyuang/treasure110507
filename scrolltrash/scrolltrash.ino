@@ -16,27 +16,27 @@ void loop() {
  
     if (str == "Glass") {           // 若字串值是 "LED_ON" 開燈
         digitalWrite(pin , HIGH);     // 馬達轉動
-        delay(1000);
+        delay(500);
         digitalWrite(pin , LOW);
     } else if (str == "Plastic") {
         digitalWrite(pin , HIGH);
-        delay(2000);
+        delay(1500);
         digitalWrite(pin , LOW);
     } else if (str == "PC") {
         digitalWrite(pin , HIGH);
-        delay(3000);
+        delay(2500);
         digitalWrite(pin , LOW);
     } else if (str == "IA") {
         digitalWrite(pin , HIGH);
-        delay(4000);
+        delay(3500);
         digitalWrite(pin , LOW);
     } else if (str == "GG") {
         digitalWrite(pin , HIGH);
-        delay(5000);
+        delay(4500);
         digitalWrite(pin , LOW);
     } else if (str == "Battery") {
         digitalWrite(pin , HIGH);
-        delay(6000);
+        delay(5500);
         digitalWrite(pin , LOW);
     }
   }
