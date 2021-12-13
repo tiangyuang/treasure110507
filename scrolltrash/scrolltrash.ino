@@ -1,21 +1,11 @@
-#define Glass 8
-#define Plastic 9
-#define PC 10
-#define IA 11
-#define GG 12
-#define Battery 13
+#define pin 13
 
 
 
 String str;
  
 void setup() {
-  pinMode(Glass, OUTPUT);
-  pinMode(Plastic, OUTPUT);
-  pinMode(PC, OUTPUT);
-  pinMode(IA, OUTPUT);
-  pinMode(GG, OUTPUT);
-  pinMode(Battery, OUTPUT);
+  pinMode(pin , OUTPUT);
   Serial.begin(9600);
 }
  
@@ -25,23 +15,29 @@ void loop() {
     str = Serial.readStringUntil('\n');
  
     if (str == "Glass") {           // 若字串值是 "LED_ON" 開燈
-        digitalWrite(Glass, HIGH);     // 馬達轉動
+        digitalWrite(pin , HIGH);     // 馬達轉動
         delay(1000);
+        digitalWrite(pin , LOW);
     } else if (str == "Plastic") {
-        digitalWrite(Plastic, HIGH);
+        digitalWrite(pin , HIGH);
         delay(2000);
+        digitalWrite(pin , LOW);
     } else if (str == "PC") {
-        digitalWrite(PC, HIGH);
+        digitalWrite(pin , HIGH);
         delay(3000);
+        digitalWrite(pin , LOW);
     } else if (str == "IA") {
-        digitalWrite(IA, HIGH);
+        digitalWrite(pin , HIGH);
         delay(4000);
+        digitalWrite(pin , LOW);
     } else if (str == "GG") {
-        digitalWrite(GG, HIGH);
+        digitalWrite(pin , HIGH);
         delay(5000);
+        digitalWrite(pin , LOW);
     } else if (str == "Battery") {
-        digitalWrite(Battery, HIGH);
+        digitalWrite(pin , HIGH);
         delay(6000);
+        digitalWrite(pin , LOW);
     }
   }
 }

@@ -3,10 +3,9 @@ from msrest.authentication import ApiKeyCredentials
 import time
 import urllib.request
 
-from utility.custom_vision.datastore import *
-# from utility.custom_vision.datastore import datastore
-# from utility.custom_vision.responseresult import responsersult 
-# from utility.custom_vision.scrollresult import scrollresult
+from utility.custom_vision.datastore import datastore
+from utility.custom_vision.responseresult import responsersult 
+from utility.custom_vision.scrollresult import scrollresult
    
 def getData(photo):
     print('=================================')     
@@ -51,5 +50,6 @@ def getData(photo):
     print(total)
     datastore(result(), imgFile, url)
 
-    #responsersult(result())
-    # scrollresult(result())
+    scrollresult(result())
+    responsersult(result())
+
