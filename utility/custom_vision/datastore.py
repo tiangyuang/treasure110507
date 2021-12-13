@@ -4,52 +4,46 @@ import os
 import shutil
 from utility import DB
 
-def dtest():
-    d=DB.run("SELECT * FROM treasure.treasure_member where Member_LINEid ='U0131826f2d23e1f17a3689d8574fd2cb'",'1')
-    print(d[0][0])
-
-    return d[0][0]
 
 def datastore(result, imgFile, url):
 
     # 計時開始
     start = time.time()
-    # 資料庫連線
-    # db = pymysql.connect(host="treasuredb2.mysql.database.azure.com", user="joe21255797",
-    #                     passwd="Treasure110507", database="treasure", port=3306, ssl={'ca': 'DigiCertGlobalRootCA.crt.pem'})
-    db = pymysql.connect(host="treasuredb2.mysql.database.azure.com", user="joe21255797",passwd="Treasure110507", database="treasure", port=3306,ssl={"fake_flag_to_enable_tls":True})
-    cursor = db.cursor()
 
-    # 流水號
-    serial = ('SELECT max(Sub_Serial_number) FROM treasure.treasure_sub_record')
-    cursor.execute(serial)
-    sn = cursor.fetchall()[0][0]+1
+    # //流水號
+    sn = DB.run('SELECT max(Sub_Serial_number) FROM treasure.treasure_sub_record','2')[0]
 
-    # 得到點數
-    getpoint = (
-        'SELECT Type_Points FROM treasure_type where Type_Number="%s"' % result)
-    cursor.execute(getpoint)
-    gt = cursor.fetchall()[0][0]
+    # //得到點數
+    # getpoint = (
+    #     'SELECT Type_Points FROM treasure_type where Type_Number="%s"' % result)
+    # cursor.execute(getpoint)
+    gt = DB.run(('SELECT Type_Points FROM treasure_type where Type_Number="%s"' % (result)),'2')[0]
+    
+    # //目前使用者
+    # SSnsql=("SELECT max(Record_Recycling_number) FROM treasure.treasure_recycling_record")
+    # cursor.execute(SSnsql)
+    # SSn = cursor.fetchall()[0][0]
+    SSn = DB.run('SELECT max(Record_Recycling_number) FROM treasure.treasure_recycling_record','2')[0]
 
     # 新增資料
-    sqlcode = ('INSERT INTO treasure_sub_record (Sub_Serial_number , Sub_Recycling_number , Sub_Type_number , Sub_Get_points , Sub_Picture) '
-               'VALUES (%d,"%s","%s",%.2f,"%s")')
+    # sqlcode1 = ('INSERT INTO treasure_sub_record (Sub_Serial_number , Sub_Recycling_number , Sub_Type_number , Sub_Get_points , Sub_Picture) '
+    #            'VALUES (%d,"%s","%s",%.2f,"%s")')
 
-    #目前使用者
-    SSnsql=("SELECT max(Record_Recycling_number) FROM treasure.treasure_recycling_record")
-    cursor.execute(SSnsql)
-    SSn = cursor.fetchall()[0][0]
+    sqlcode = DB.run('INSERT INTO treasure_sub_record (Sub_Serial_number , Sub_Recycling_number , Sub_Type_number , Sub_Get_points , Sub_Picture) '
+               'VALUES (%d,"%s","%s",%.2f,"%s")' %(sn, SSn, result, gt, url))
+
     
-    # 資料內容
-    data = (sn, SSn, result, gt, url)
-    cursor.execute(sqlcode % data)
+    
+    # # 資料內容
+    # data = (sn, SSn, result, gt, url)
+    # cursor.execute(sqlcode % data)
 
-    print(data)
+    # print(data)
 
-    # ----------------------------------------------------------
-    db.commit()
+    # # ----------------------------------------------------------
+    # db.commit()
 
-    db.close()
+    # db.close()
 
     # today = time.strftime('%Y%m%d_%H_%M_%S')
     # shutil.copy(imgFile, "./pic/testing/"+str(today)+"_"+result+".jpg")

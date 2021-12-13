@@ -49,8 +49,7 @@ def getData(photo):
     total=end-start
     
     print(total)
-    print('我在datastore上面')
     datastore(result(), imgFile, url)
-    print('我在datastore下面')
+
     # responsersult(result())
     # scrollresult(result())
