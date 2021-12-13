@@ -21,7 +21,7 @@ def getData(photo):
     PROJECT_ID = '01b046a9-37fd-4ba1-af59-b5e6760a4cdf'
     publish_iteration_name = 'Iteration2'
     url="https://treasureblob.blob.core.windows.net/treasurecontainer/"+photo
-    imgFile="pic/sample.jpg"
+    imgFile="utility/custom_vision/pic/sample.jpg"
     print(url)
     urllib.request.urlretrieve(url, imgFile)
 
