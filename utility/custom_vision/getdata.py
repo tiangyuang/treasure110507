@@ -51,5 +51,5 @@ def getData(photo):
     print(total)
     datastore(result(), imgFile, url)
 
-    # responsersult(result())
+    #responsersult(result())
     # scrollresult(result())

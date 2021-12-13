@@ -11,7 +11,7 @@ def responsersult(result):
 
         while count<3:  #讓arduino有時間可以執行
             if result == 'a':
-                print('Glass')b
+                print('Glass')
                 ser.write(b'Glass\n')  # 訊息必須是位元組類型
                 sleep(0.5)              # 暫停0.5秒，再執行底下接收回應訊息的迴圈
 

@@ -2,3 +2,9 @@ line-bot-sdk
 Flask
 gspread
 pymysql
+qrcode
+zxing
+pymata4
+pandas
+numpy
+matplotlib

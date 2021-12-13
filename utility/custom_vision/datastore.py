@@ -11,7 +11,7 @@ def datastore(result, imgFile, url):
     start = time.time()
 
     # //流水號
-    sn = DB.run('SELECT max(Sub_Serial_number) FROM treasure.treasure_sub_record','2')[0]
+    sn = DB.run('SELECT max(Sub_Serial_number) FROM treasure.treasure_sub_record','2')[0]+1
 
     # //得到點數
     # getpoint = (
