@@ -1,0 +1,191 @@
+{
+    "type": "bubble",
+    "size": "giga",
+    "header": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+            {
+                "type": "box",
+                "layout": "baseline",
+                "contents": [
+                    {
+                        "type": "text",
+                        "text": "本月紀錄",
+                        "weight": "bold",
+                        "color": "#16BB54",
+                        "size": "md"
+                    },
+                    {
+                        "type": "icon",
+                        "url": "https://imgur.com/UcfCKxf.png",
+                        "size": "20px",
+                        "offsetTop": "20%",
+                        "offsetEnd": "xs"
+                    },
+                    {
+                        "type": "text",
+                        "text": "100",
+                        "flex": 0,
+                        "color": "#16BB54",
+                        "weight": "bold"
+                    }
+                ]
+            },
+            {
+                "type": "separator",
+                "margin": "md"
+            }
+        ],
+        "paddingTop": "15px",
+        "height": "60px"
+    },
+    "body": {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+            {
+                "type": "image",
+                "size": "full",
+                "offsetEnd": "lg",
+                "url": "https://db4f-180-177-26-147.ngrok.io/static/pie/U0131826f2d23e1f17a3689d8574fd2cb20211121_003808.jpg"
+            },
+            {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                    {
+                        "type": "box",
+                        "layout": "baseline",
+                        "contents": [
+                            {
+                                "type": "icon",
+                                "url": "https://imgur.com/LOF5157.jpg",
+                                "size": "xs",
+                                "offsetTop": "7%"
+                            },
+                            {
+                                "type": "text",
+                                "text": "玻璃 2",
+                                "wrap": true,
+                                "size": "15px",
+                                "color": "#000000"
+                            }
+                        ],
+                        "spacing": "md",
+                        "margin": "xxl"
+                    },
+                    {
+                        "type": "box",
+                        "layout": "baseline",
+                        "contents": [
+                            {
+                                "type": "icon",
+                                "url": "https://imgur.com/25MddyP.jpg",
+                                "size": "xs",
+                                "offsetTop": "7%"
+                            },
+                            {
+                                "type": "text",
+                                "text": "塑膠 1",
+                                "wrap": true,
+                                "size": "15px",
+                                "color": "#000000"
+                            }
+                        ],
+                        "spacing": "md",
+                        "margin": "md"
+                    },
+                    {
+                        "type": "box",
+                        "layout": "baseline",
+                        "contents": [
+                            {
+                                "type": "icon",
+                                "url": "https://imgur.com/KyGEQ40.jpg",
+                                "size": "xs",
+                                "offsetTop": "7%"
+                            },
+                            {
+                                "type": "text",
+                                "text": "紙容器 1",
+                                "wrap": true,
+                                "size": "15px",
+                                "color": "#000000"
+                            }
+                        ],
+                        "spacing": "md",
+                        "margin": "md"
+                    },
+                    {
+                        "type": "box",
+                        "layout": "baseline",
+                        "contents": [
+                            {
+                                "type": "icon",
+                                "url": "https://imgur.com/bTsktLu.jpg",
+                                "size": "xs",
+                                "offsetTop": "7%"
+                            },
+                            {
+                                "type": "text",
+                                "text": "鐵鋁 0",
+                                "wrap": true,
+                                "size": "15px",
+                                "color": "#000000"
+                            }
+                        ],
+                        "spacing": "md",
+                        "margin": "md"
+                    },
+                    {
+                        "type": "box",
+                        "layout": "baseline",
+                        "contents": [
+                            {
+                                "type": "icon",
+                                "url": "https://imgur.com/uqBNvcP.jpg",
+                                "size": "xs",
+                                "offsetTop": "7%"
+                            },
+                            {
+                                "type": "text",
+                                "text": "一般 1",
+                                "wrap": true,
+                                "size": "15px",
+                                "color": "#000000"
+                            }
+                        ],
+                        "spacing": "md",
+                        "margin": "md"
+                    },
+                    {
+                        "type": "box",
+                        "layout": "baseline",
+                        "contents": [
+                            {
+                                "type": "icon",
+                                "url": "https://imgur.com/9ZVr3MB.jpg",
+                                "size": "xs",
+                                "offsetTop": "7%"
+                            },
+                            {
+                                "type": "text",
+                                "text": "電池 0",
+                                "wrap": true,
+                                "size": "15px",
+                                "color": "#000000"
+                            }
+                        ],
+                        "spacing": "md",
+                        "margin": "md"
+                    }
+                ],
+                "width": "25%"
+            }
+        ],
+        "height": "230px",
+        "offsetBottom": "lg",
+        "offsetEnd": "md"
+    }
+}

@@ -1,17 +1,23 @@
 import pymysql
-import getdata
 import time
 import os
 import shutil
+from utility import DB
 
+def dtest():
+    d=DB.run("SELECT * FROM treasure.treasure_member where Member_LINEid ='U0131826f2d23e1f17a3689d8574fd2cb'",'1')
+    print(d[0][0])
+
+    return d[0][0]
 
 def datastore(result, imgFile, url):
 
     # 計時開始
     start = time.time()
     # 資料庫連線
-    db = pymysql.connect(host="treasuredb2.mysql.database.azure.com", user="joe21255797",
-                        passwd="Treasure110507", database="treasure", port=3306, ssl={'ca': 'DigiCertGlobalRootCA.crt.pem'})
+    # db = pymysql.connect(host="treasuredb2.mysql.database.azure.com", user="joe21255797",
+    #                     passwd="Treasure110507", database="treasure", port=3306, ssl={'ca': 'DigiCertGlobalRootCA.crt.pem'})
+    db = pymysql.connect(host="treasuredb2.mysql.database.azure.com", user="joe21255797",passwd="Treasure110507", database="treasure", port=3306,ssl={"fake_flag_to_enable_tls":True})
     cursor = db.cursor()
 
     # 流水號
@@ -45,10 +51,10 @@ def datastore(result, imgFile, url):
 
     db.close()
 
-    today = time.strftime('%Y%m%d_%H_%M_%S')
-    shutil.copy(imgFile, "./pic/testing/"+str(today)+"_"+result+".jpg")
-    shutil.move("./pic/testing/"+str(today)+"_"+result+".jpg", "./pic/result")
-    os.remove(imgFile)
+    # today = time.strftime('%Y%m%d_%H_%M_%S')
+    # shutil.copy(imgFile, "./pic/testing/"+str(today)+"_"+result+".jpg")
+    # shutil.move("./pic/testing/"+str(today)+"_"+result+".jpg", "./pic/result")
+    # os.remove(imgFile)
     # 計時結束
     end = time.time()
     total = end-start

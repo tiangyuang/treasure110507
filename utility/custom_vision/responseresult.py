@@ -1,4 +1,3 @@
-import getdata
 import serial
 from time import sleep
 
