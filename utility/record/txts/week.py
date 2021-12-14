@@ -114,16 +114,16 @@ def __json(line_id):
             }
         )
 
-    with open('treasure110507/json/record_week.json', 'r', encoding='utf-8') as file:
+    with open('json/record_week.json', 'r', encoding='utf-8') as file:
         data = json.load(file)
         data['contents'][0]['header']['contents'][0]['contents'][2]['text'] = sum_point(
             line_id)
         data['contents'][0]['body']['contents'] = div
 
-    with open('treasure110507/json/record_week.json', 'w', encoding='utf-8') as file:
+    with open('json/record_week.json', 'w', encoding='utf-8') as file:
         json.dump(data, file)
 
     search_record = json.load(
-        open('treasure110507/json/record_week.json', 'r', encoding='utf-8'))
+        open('json/record_week.json', 'r', encoding='utf-8'))
 
     return search_record

@@ -3,7 +3,7 @@ def icon(type):
     if type == "塑膠":
         return "https://i.imgur.com/pZ1HIWK.png"
     elif type == "電池":
-        return "https://imgur.com/NsSRaZQ"
+        return "https://imgur.com/NsSRaZQ.png"
     elif type == "鐵鋁":
         return "https://i.imgur.com/oSL6VLd.png"
     elif type == "紙容器":
