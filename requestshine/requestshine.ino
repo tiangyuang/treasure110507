@@ -26,27 +26,27 @@ void loop() {
  
     if (str == "Glass") {           // 若字串值是 "LED_ON" 開燈
         digitalWrite(Glass, HIGH);     // 開燈
-        delay(1000);
+        delay(5000);
         digitalWrite(Glass, LOW);
     } else if (str == "Plastic") {
         digitalWrite(Plastic, HIGH);
-        delay(1000);
+        delay(5000);
         digitalWrite(Plastic, LOW);
     } else if (str == "PC") {
         digitalWrite(PC, HIGH);
-        delay(1000);
+        delay(5000);
         digitalWrite(PC, LOW);
     } else if (str == "IA") {
         digitalWrite(IA, HIGH);
-        delay(1000);
+        delay(5000);
         digitalWrite(IA, LOW);
     } else if (str == "GG") {
         digitalWrite(GG, HIGH);
-        delay(1000);
+        delay(5000);
         digitalWrite(GG, LOW);
     } else if (str == "Battery") {
         digitalWrite(Battery, HIGH);
-        delay(1000);
+        delay(5000);
         digitalWrite(Battery, LOW);
     }
   }

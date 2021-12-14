@@ -23,10 +23,9 @@ def datastore(result, imgFile, url):
                'VALUES (%d,"%s","%s",%.2f,"%s")' %(sn, SSn, result, gt, url))
 
 
-    # today = time.strftime('%Y%m%d_%H_%M_%S')
-    # shutil.copy(imgFile, "./pic/testing/"+str(today)+"_"+result+".jpg")
-    # shutil.move("./pic/testing/"+str(today)+"_"+result+".jpg", "./pic/result")
-    # os.remove(imgFile)
+    today = time.strftime('%Y%m%d_%H_%M_%S')
+    shutil.copy(imgFile, "utility/custom_vision/pic/result/"+str(today)+"_"+result+".jpg")
+    os.remove(imgFile)
     # 計時結束
     end = time.time()
     total = end-start

@@ -3,10 +3,9 @@ from msrest.authentication import ApiKeyCredentials
 import time
 import urllib.request
 
-from utility.custom_vision.datastore import *
-# from utility.custom_vision.datastore import datastore
-# from utility.custom_vision.responseresult import responsersult 
-# from utility.custom_vision.scrollresult import scrollresult
+from utility.custom_vision.datastore import datastore
+from utility.custom_vision.responseresult import responsersult 
+from utility.custom_vision.scrollresult import scrollresult
    
 def getData(photo):
     print('=================================')     
@@ -21,7 +20,7 @@ def getData(photo):
     PROJECT_ID = '01b046a9-37fd-4ba1-af59-b5e6760a4cdf'
     publish_iteration_name = 'Iteration2'
     url="https://treasureblob.blob.core.windows.net/treasurecontainer/"+photo
-    imgFile="pic/sample.jpg"
+    imgFile="utility/custom_vision/pic/sample.jpg"
     print(url)
     urllib.request.urlretrieve(url, imgFile)
 
@@ -51,5 +50,6 @@ def getData(photo):
     print(total)
     datastore(result(), imgFile, url)
 
-    # responsersult(result())
-    # scrollresult(result())
+    scrollresult(result())
+    responsersult(result())
+
