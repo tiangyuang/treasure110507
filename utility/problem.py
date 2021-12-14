@@ -1,7 +1,8 @@
 from linebot.models import *
 from utility import DB
 
-def problem_txt(txt,line_id=0,problem_time=0):
+
+def problem_txt(txt, line_id, problem_time):
     global problem_location
     # //詢問哪裡出問題
     if txt == '問題通報':
@@ -34,32 +35,36 @@ def problem_txt(txt,line_id=0,problem_time=0):
         )
 
         return problem_buttons_template_message
-    
-    elif txt[0]=="!":
+
+    elif txt[0] == "!":
         Service_Problem = txt[1:]
-        problem_to_db(line_id,problem_location,Service_Problem)
+        problem_to_db(line_id, problem_location, Service_Problem, problem_time)
         # problem_to_db(line_id,problem_time,problem_location,Service_Problem)
         emoji = [
-            {
-                "index": 0,
-                "productId": "5ac21a18040ab15980c9b43e",
-                "emojiId": "025"
-            },
-            {
-                "index": 7,
-                "productId": "5ac2280f031a6752fb806d65",
-                "emojiId": "101"
-            }
+        {
+            "index": 0,
+            "productId": "5ac21a18040ab15980c9b43e",
+            "emojiId": "025"
+        },
+        {
+            "index": 7,
+            "productId": "5ac2280f031a6752fb806d65",
+            "emojiId": "101"
+        }
         ]
         return TextSendMessage(text='收到通報了，我們會盡快處理的')
 
-        # return TextSendMessage(text='$我們收到通報了，我們會盡快處理的$',emojis=emoji)
+        # pp = TextSendMessage(text='$我們收到通報了，我們會盡快處理的$',emojis=emoji)
+
+        # return pp
         
 
+
 # // 將問題新增至DB
-def problem_to_db(line_id,problem_location,Service_Problem):
-    DB.run('INSERT INTO treasure.treasure_service (Service_LINEid, Service_Location, Service_Problem) VALUES ("%s","%s","%s")' %(line_id,problem_location,Service_Problem))
-    
+def problem_to_db(line_id, problem_location, Service_Problem, problem_time):
+    DB.run('INSERT INTO treasure.treasure_service (Service_LINEid, Service_Location, Service_Problem,Service_time) VALUES ("%s","%s","%s","%s")' % (
+        line_id, problem_location, Service_Problem, problem_time))
+
 
 # //詢問哪裡出問題
 def problem():
@@ -88,7 +93,7 @@ def problem():
             MessageImagemapAction(
                 text='通報地點:台北市中正區',
                 area=ImagemapArea(
-                x=135, y=97, width=171, height=101
+                    x=135, y=97, width=171, height=101
                 )
             ),
             MessageImagemapAction(
@@ -158,6 +163,4 @@ def problem():
             )
         ]
     )
-    return [where,imagemap_where]
-
-
+    return [where, imagemap_where]
