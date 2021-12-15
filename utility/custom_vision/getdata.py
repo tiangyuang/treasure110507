@@ -4,7 +4,7 @@ import time
 import urllib.request
 
 from utility.custom_vision.datastore import datastore
-from utility.custom_vision.responseresult import responsersult 
+from utility.custom_vision.responseresult import responseresult 
 from utility.custom_vision.scrollresult import scrollresult
    
 def getData(photo):
@@ -18,7 +18,7 @@ def getData(photo):
 
     # 設定project.id, publish_iteration_name, 圖片位置及名稱
     PROJECT_ID = '01b046a9-37fd-4ba1-af59-b5e6760a4cdf'
-    publish_iteration_name = 'Iteration2'
+    publish_iteration_name = 'Iteration3'
     url="https://treasureblob.blob.core.windows.net/treasurecontainer/"+photo
     imgFile="utility/custom_vision/pic/sample.jpg"
     print(url)
@@ -51,5 +51,5 @@ def getData(photo):
     datastore(result(), imgFile, url)
 
     scrollresult(result())
-    responsersult(result())
+    responseresult(result())
 

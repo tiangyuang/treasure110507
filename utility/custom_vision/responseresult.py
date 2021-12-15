@@ -1,9 +1,9 @@
 import serial
 from time import sleep
 
-def responsersult(result):
+def responseresult(result):
     try:
-        COM_PORT = 'COM3'  # 請自行修改序列埠名稱
+        COM_PORT = 'COM3'  # 請自行修改序列埠名稱,連結requestshine.ino
         BAUD_RATES = 9600
         ser = serial.Serial(COM_PORT, BAUD_RATES)
 
