@@ -9,10 +9,7 @@ from utility.record.txts.public.pie import Pie
 def month(line_id):
     # 畫圓餅圖
     pie = Pie('本月紀錄',line_id)
-    pie.draw_pie()
-
-    record_today = json.load(
-        open('treasure110507/json/record_month.json', 'r', encoding='utf-8'))
+    pie_path=pie.draw_pie()
 
     imagemap_today = ImagemapSendMessage(
         base_url='https://i.imgur.com/jHrl9VA.png',
@@ -45,4 +42,4 @@ def month(line_id):
             )
         ]
     )
-    return[FlexSendMessage('record_today', record_today), imagemap_today]
+    return[FlexSendMessage('record_today', pie.pie_json(pie_path)), imagemap_today]
