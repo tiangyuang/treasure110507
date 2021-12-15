@@ -89,7 +89,7 @@ class Pie:
         # 畫出圓餅圖
         plt.savefig(os.path.join('static\pie', self.line_id+ptime+".jpg"))
 
-        ngrok = 'https://e750-2001-b400-e3d2-1822-356d-72c3-448f-7764.ngrok.io/'
+        ngrok = 'https://0f79-180-177-26-147.ngrok.io/'
 
         pie_path = f'{ngrok}static/pie/{self.line_id}{ptime}.jpg'
         print('=================================0000000000000000000============')
@@ -253,8 +253,6 @@ class Pie:
                 
                 data['header']['contents'][0]['contents'][2]['text']= sum_point(self.line_id)   #點數
                 data['body']['contents'][0]['url'] = pie_path    #圖片url
-                print('0000000000000000000000000000000000000')
-                print(pie_path)
                 data['body']['contents'][1]= div[0] #數量
                 
             with open('json/record_month.json', 'w', encoding='utf-8') as file:
@@ -268,12 +266,10 @@ class Pie:
                 
                 data['header']['contents'][0]['contents'][2]['text']= sum_point(self.line_id)    #點數
                 data['body']['contents'][0]['url'] = pie_path    #圖片url
-                
                 data['body']['contents'][1]= div[0] #數量
                 
             with open('json/record_acc.json', 'w', encoding='utf-8') as file:
                     json.dump(data, file)
-
 
             pie_record = json.load(open('json/record_acc.json', 'r', encoding='utf-8'))
 

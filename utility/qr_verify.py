@@ -13,7 +13,7 @@ from utility import DB
 from utility.record.record import record_txt
 from utility.record.txts.public.icon import icon
 from utility.record.txts.public.sum_point import sum_point
-from utility import open_door
+from utility.door import open_door
 
 
 # //資料庫取得mcode 製作QRcode
@@ -126,14 +126,14 @@ def add_record(line_id, mcode, recycling_time):
         DB.run('INSERT INTO treasure_recycling_record (Record_Recycling_number , Record_LINEid , Record_Location_number , Record_Recycling_time)' 'VALUES (%d,"%s",%d,"%s")' % (
             recycling_number, line_id, location_number, recycling_time))
         # 開門
-        # open_door.door()
+        # open_door()
 
         # 等待辨識的時間
         # time.sleep(2)
         # 查詢現在回收紀錄
-        now = now_record(line_id)
+        # now = now_record(line_id)
 
-        return now
+        # return now
 
     else:
         return 'hhhhhhh'
@@ -143,7 +143,7 @@ def add_record(line_id, mcode, recycling_time):
 
 
 # //查詢現在回收紀錄
-def now_record(line_id):
+def now_record(line_id,time):
     imagemap_today = ImagemapSendMessage(
         base_url='https://i.imgur.com/Z96l63C.png',
         alt_text='this is an imagemap',
@@ -175,14 +175,15 @@ def now_record(line_id):
             )
         ]
     )
-    return[FlexSendMessage('record_today', __json(line_id)), imagemap_today]
+    return[FlexSendMessage('record_today', __json(line_id,time)), imagemap_today]
 
 # //製作現在紀錄json
-def __json(line_id):
+def __json(line_id,recycle_time):
+    
     record_now = DB.run(("select d.Type_Name,b.Sub_Get_points,a.Record_Recycling_time,c.Location_Name,b.Sub_Picture from treasure_recycling_record as a join treasure_sub_record as b on a.Record_Recycling_number=b.Sub_Recycling_number join treasure_type as d on b.Sub_Type_number = d.Type_Number join treasure_erection_location as c on a.Record_Location_number=c.Location_Number where a.Record_LINEid= '%s' and a.Record_Recycling_time = '2021-12-13 20:11:10'" % (line_id)), '1')
     
     div = []
-    for i in range(3):
+    for i in range(6):
         record_date = record_now[i][2]
         date = dt.strftime(record_date, '%Y/%m/%d')
         time = dt.strftime(record_date, '%H:%M')

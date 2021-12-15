@@ -50,7 +50,7 @@ def __json(line_id):
 
     div = []
 
-    for i in range(len(today_record)):
+    for i in range(6):
         record_date = today_record[i][2]
         date = dt.strftime(record_date, '%Y/%m/%d')
         time = dt.strftime(record_date, '%H:%M')

@@ -1,0 +1,24 @@
+{
+    "type": "carousel",
+    "contents": [
+      {
+        "type": "bubble",
+        "footer": {
+          "type": "box",
+          "layout": "vertical",
+          "spacing": "sm",
+          "contents": [
+            {
+              "type": "button",
+              "style": "primary",
+              "action": {
+                "type": "message",
+                "label": "結束回收",
+                "text": "結束回收"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
