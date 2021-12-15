@@ -7,13 +7,14 @@ from linebot.models import *
 from utility.location import *
 from utility.add_friend import *
 from utility.location import *
-
 from utility.problem import *
 from utility.qr_verify import *
-## record
+from utility.point import *
+# record
 from utility.record.record import *
 # ----------------------------------------------------
 from datetime import datetime
+# CV
 from utility.custom_vision.getdata import getData
 
 # access token & channel secret
@@ -25,14 +26,16 @@ handler = WebhookHandler('9027ee6b55dbfa011d129a0e232c7fe8')
 
 app = Flask(__name__)
 
-# bot其實不需要處理瀏覽首頁的請求
+# bot處理瀏覽首頁的請求
+
+
 @app.route("/")
 def index():
     photo = request.args.get('photo')
     getData(photo)
 
     return photo
-    
+
 
 # 接收post方法請求
 @app.route("/callback", methods=['POST'])
@@ -48,6 +51,8 @@ def callback():
     return 'OK'
 
 # 接收任意類型LINE訊息的裝飾函式，程式沒意料到的
+
+
 @handler.default()
 def default(event):  # 接收「訊息事件」的參數 = 被包裝成MessageEvent的webhook事件物件(JSON)
     print('捕捉到事件：', event)
@@ -71,32 +76,21 @@ def handle_follow(event):
 @handler.add(MessageEvent, message=ImageMessage)
 def handle_image(event):
     message_content = line_bot_api.get_message_content(event.message.id)
-    
-    print('==============')
-    line_id, mcode = decodeQR(event.source.user_id, message_content)
-    print('-------------------------------------')
-    # print(line_id, mcode)
 
     # //解析QRCODE照片
-    
-    print('message_content1')
-    print(line_id)
-    
+    line_id, mcode = decodeQR(event.source.user_id, message_content)
+
     recycling_time = datetime.fromtimestamp(int(str(event.timestamp)[:-3]))
-    print('message_content2')
-    print(recycling_time)
 
-    # # //新增回收紀錄至DB
+    # //新增回收紀錄至DB
 
-
-    add_record(line_id, mcode, recycling_time)
-
-
-    # !判斷DB有沒有此開門
-
+    line_bot_api.reply_message(
+        event.reply_token, add_record(line_id, mcode, recycling_time))
 #!-------------------------
 
 # //處理各種文字
+
+
 @handler.add(MessageEvent)
 def handle_message(event):
     txt = event.message.text
@@ -109,23 +103,24 @@ def handle_message(event):
     # //紀錄-----------------
     elif '紀錄' in txt:
         print('紀錄查詢:', event)
-        line_bot_api.reply_message(event.reply_token, record_txt(txt,line_id))
+        line_bot_api.reply_message(event.reply_token, record_txt(txt, line_id))
 
     # //點數-----------------
     if txt == '點數兌換':
         print('點數:', event)
-        point = json.load(open('treasure110507/json/point.json', 'r', encoding='utf-8'))
-        line_bot_api.reply_message(
-            event.reply_token, FlexSendMessage('friend', point))
+
+        line_bot_api.reply_message(event.reply_token, FlexSendMessage('friend', point_json(line_id)))
 
     # //通報-----------------
-    if ('通報' in txt or txt[0]=="!"):
+    if ('通報' in txt or txt[0] == "!"):
         problem_time = datetime.fromtimestamp(int(str(event.timestamp)[:-3]))
-        line_bot_api.reply_message(event.reply_token,problem_txt(txt,line_id,problem_time))
+        print(problem_time)
+        line_bot_api.reply_message(
+            event.reply_token, problem_txt(txt, line_id, problem_time))
 
     # //加入好友[填寫基本資料json]
     line_bot_api.reply_message(event.reply_token, friend(txt, line_id))
-    
+
     # //-------------------------
 
 
@@ -141,9 +136,11 @@ def handle_location_message(event):
     lat = str(event.message.latitude)  # user緯度
     lng = str(event.message.longitude)  # user經度
 
-    line_bot_api.reply_message(event.reply_token, FlexSendMessage('3location', location(lat, lng)))
+    line_bot_api.reply_message(
+        event.reply_token, FlexSendMessage('3location', location(lat, lng)))
 
 # //-------------------------
+
 
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0', port=80)
