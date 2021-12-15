@@ -3,7 +3,7 @@ from time import sleep
 
 def scrollresult(result):
     try:
-        COM_PORT = 'COM4'  # 請自行修改序列埠名稱
+        COM_PORT = 'COM4'  # 請自行修改序列埠名稱,連結scrolltrash.ino
         BAUD_RATES = 9600
         ser = serial.Serial(COM_PORT, BAUD_RATES)
 
