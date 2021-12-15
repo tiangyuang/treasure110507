@@ -12,3 +12,4 @@ def record_txt(txt, line_id):
         return txts.month()
     elif txt == '累積紀錄':
         return txts.acc()
+
