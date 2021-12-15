@@ -8,6 +8,8 @@ def door():
 
     board.set_pin_mode_stepper(num_steps, pins)
 
-
     board.stepper_write(21, num_steps)
-    time.sleep(1)
+    time.sleep(10)
+
+    board.stepper_write(21, 1024)
+
