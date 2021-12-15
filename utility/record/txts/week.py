@@ -56,7 +56,7 @@ def __json(line_id):
 
     div = []
 
-    for i in range(len(week_record)):
+    for i in range(20):
         record_date = week_record[i][2]
         date = dt.strftime(record_date, '%Y/%m/%d')
         time = dt.strftime(record_date, '%H:%M')
@@ -116,8 +116,7 @@ def __json(line_id):
 
     with open('json/record_week.json', 'r', encoding='utf-8') as file:
         data = json.load(file)
-        data['contents'][0]['header']['contents'][0]['contents'][2]['text'] = sum_point(
-            line_id)
+        data['contents'][0]['header']['contents'][0]['contents'][2]['text'] = sum_point(line_id)
         data['contents'][0]['body']['contents'] = div
 
     with open('json/record_week.json', 'w', encoding='utf-8') as file:

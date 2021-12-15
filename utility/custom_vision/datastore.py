@@ -19,7 +19,7 @@ def datastore(result, imgFile, url):
     SSn = DB.run('SELECT max(Record_Recycling_number) FROM treasure.treasure_recycling_record','2')[0]
 
     #// 新增資料
-    sqlcode = DB.run('INSERT INTO treasure_sub_record (Sub_Serial_number , Sub_Recycling_number , Sub_Type_number , Sub_Get_points , Sub_Picture) '
+    DB.run('INSERT INTO treasure_sub_record (Sub_Serial_number , Sub_Recycling_number , Sub_Type_number , Sub_Get_points , Sub_Picture) '
                'VALUES (%d,"%s","%s",%.2f,"%s")' %(sn, SSn, result, gt, url))
 
 

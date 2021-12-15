@@ -10,6 +10,7 @@ from utility.location import *
 from utility.problem import *
 from utility.qr_verify import *
 from utility.point import *
+from utility.door import close_door
 # record
 from utility.record.record import *
 # ----------------------------------------------------
@@ -95,28 +96,35 @@ def handle_image(event):
 def handle_message(event):
     txt = event.message.text
     line_id = event.source.user_id
+    time = datetime.fromtimestamp(int(str(event.timestamp)[:-3]))
 
     # //打開相機-----------------
     if txt == 'qrcode':
-        line_bot_api.reply_message(event.reply_token, open_camera())
+        end = json.load(open('json/confirm_end.json', 'r', encoding='utf-8'))
+        line_bot_api.reply_message(event.reply_token, [open_camera(),FlexSendMessage('record_today',end)])
 
     # //紀錄-----------------
     elif '紀錄' in txt:
         print('紀錄查詢:', event)
         line_bot_api.reply_message(event.reply_token, record_txt(txt, line_id))
 
+    elif txt == '結束回收':
+        # close_door()
+        
+        line_bot_api.reply_message(event.reply_token, now_record(line_id,time))
+        
+
     # //點數-----------------
-    if txt == '點數兌換':
+    elif txt == '點數兌換':
         print('點數:', event)
 
         line_bot_api.reply_message(event.reply_token, FlexSendMessage('friend', point_json(line_id)))
 
     # //通報-----------------
-    if ('通報' in txt or txt[0] == "!"):
-        problem_time = datetime.fromtimestamp(int(str(event.timestamp)[:-3]))
-        print(problem_time)
-        line_bot_api.reply_message(
-            event.reply_token, problem_txt(txt, line_id, problem_time))
+    elif ('通報' in txt or txt[0] == "!"):
+        line_bot_api.reply_message(event.reply_token, problem_txt(txt, line_id, time))
+
+    
 
     # //加入好友[填寫基本資料json]
     line_bot_api.reply_message(event.reply_token, friend(txt, line_id))
