@@ -1,10 +1,12 @@
 # python
 import os.path
 import time
+import json
 # line
 from linebot.models import *
 # utility
 from utility import DB
+from utility.record.txts.public.sum_point import sum_point
 # pie
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -27,12 +29,7 @@ class Pie:
 
     # //畫圓餅圖
     def draw_pie(self):
-        pie_quantity = self.pie_quantity()
-
-        if self.txt == '本月紀錄':
-            quantity = pie_quantity
-        else:
-            quantity = pie_quantity
+        quantity = self.pie_quantity()
 
         # 取得現在時間
         localtime = time.localtime()
@@ -90,4 +87,195 @@ class Pie:
             t.set_size(16)
 
         # 畫出圓餅圖
-        plt.savefig(os.path.join('treasure110507\static\pie', self.line_id+ptime+".jpg"))
+        plt.savefig(os.path.join('static\pie', self.line_id+ptime+".jpg"))
+
+        ngrok = 'https://e750-2001-b400-e3d2-1822-356d-72c3-448f-7764.ngrok.io/'
+
+        pie_path = f'{ngrok}static/pie/{self.line_id}{ptime}.jpg'
+        print('=================================0000000000000000000============')
+        print(pie_path)
+
+        return pie_path
+
+
+    def pie_json(self,pie_path):
+        
+        # month_record = (('a', '玻璃', 14), ('b', '塑膠', 31), ('c', '紙容器', 4), ('d', '鐵鋁', 23), ('e', '一般垃圾', 9), ('f', '電池', 24))
+        # line_id = 'U0131826f2d23e1f17a3689d8574fd2cb'
+
+        div = []
+
+        month_record = self.pie_quantity()
+
+        # month_record = DB.run(("select d.Type_Number,d.Type_Name ,count(d.Type_Name) from treasure.treasure_recycling_record as a join treasure.treasure_sub_record as b on a.Record_Recycling_number=b.Sub_Recycling_number join treasure.treasure_erection_location as c on a.Record_Location_number=c.Location_Number join treasure.treasure_type as d on b.Sub_Type_number = d.Type_Number where a.Record_LINEid='%s' and month(a.Record_Recycling_time)=month(now()) group by d.Type_Name order by d.Type_Number " % (self.line_id)), '1')
+
+        div.append({"type": "box",
+                "layout": "vertical",
+                "contents": [
+                    {
+                    "type": "box",
+                    "layout": "baseline",
+                    "contents": [
+                        {
+                        "type": "icon",
+                        "url": "https://imgur.com/LOF5157.jpg",
+                        "size": "xs",
+                        "offsetTop": "7%"
+                        },
+                        {
+                        "type": "text",
+                        "text": f'玻璃 {month_record[0][1]}',
+                        "wrap": True,
+                        "size": "15px",
+                        "color": "#000000"
+                        }
+                    ],
+                    "spacing": "md",
+                    "margin": "xxl"
+                    },
+                    {
+                    "type": "box",
+                    "layout": "baseline",
+                    "contents": [
+                        {
+                        "type": "icon",
+                        "url": "https://imgur.com/25MddyP.jpg",
+                        "size": "xs",
+                        "offsetTop": "7%"
+                        },
+                        {
+                        "type": "text",
+                        "text": f'塑膠 {month_record[1][1]}',
+                        "wrap": True,
+                        "size": "15px",
+                        "color": "#000000"
+                        }
+                    ],
+                    "spacing": "md",
+                    "margin": "md"
+                    },
+                    {
+                    "type": "box",
+                    "layout": "baseline",
+                    "contents": [
+                        {
+                        "type": "icon",
+                        "url": "https://imgur.com/KyGEQ40.jpg",
+                        "size": "xs",
+                        "offsetTop": "7%"
+                        },
+                        {
+                        "type": "text",
+                        "text": f'紙容器 {month_record[2][1]}',
+                        "wrap": True,
+                        "size": "15px",
+                        "color": "#000000"
+                        }
+                    ],
+                    "spacing": "md",
+                    "margin": "md"
+                    },
+                    {
+                    "type": "box",
+                    "layout": "baseline",
+                    "contents": [
+                        {
+                        "type": "icon",
+                        "url": "https://imgur.com/bTsktLu.jpg",
+                        "size": "xs",
+                        "offsetTop": "7%"
+                        },
+                        {
+                        "type": "text",
+                        "text": f'鐵鋁 {month_record[3][1]}',
+                        "wrap": True,
+                        "size": "15px",
+                        "color": "#000000"
+                        }
+                    ],
+                    "spacing": "md",
+                    "margin": "md"
+                    },
+                    {
+                    "type": "box",
+                    "layout": "baseline",
+                    "contents": [
+                        {
+                        "type": "icon",
+                        "url": "https://imgur.com/uqBNvcP.jpg",
+                        "size": "xs",
+                        "offsetTop": "7%"
+                        },
+                        {
+                        "type": "text",
+                        "text": f'一般 {month_record[4][1]}',
+                        "wrap": True,
+                        "size": "15px",
+                        "color": "#000000"
+                        }
+                    ],
+                    "spacing": "md",
+                    "margin": "md"
+                    },
+                    {
+                    "type": "box",
+                    "layout": "baseline",
+                    "contents": [
+                        {
+                        "type": "icon",
+                        "url": "https://imgur.com/9ZVr3MB.jpg",
+                        "size": "xs",
+                        "offsetTop": "7%"
+                        },
+                        {
+                        "type": "text",
+                        "text": f'電池 {month_record[5][1]}',
+                        "wrap": True,
+                        "size": "15px",
+                        "color": "#000000"
+                        }
+                    ],
+                    "spacing": "md",
+                    "margin": "md"
+                    }
+                ],
+                "width": "25%"
+                })
+                # print(div)
+
+        
+
+                # print(data['body']['contents'][1])
+
+        if self.txt == '本月紀錄':
+            with open('json/record_month.json', 'r', encoding='utf-8') as file:
+                data = json.load(file)
+                
+                data['header']['contents'][0]['contents'][2]['text']= sum_point(self.line_id)   #點數
+                data['body']['contents'][0]['url'] = pie_path    #圖片url
+                print('0000000000000000000000000000000000000')
+                print(pie_path)
+                data['body']['contents'][1]= div[0] #數量
+                
+            with open('json/record_month.json', 'w', encoding='utf-8') as file:
+                    json.dump(data, file)
+
+            pie_record = json.load(open('json/record_month.json', 'r', encoding='utf-8'))
+        
+        else:
+            with open('json/record_acc.json', 'r', encoding='utf-8') as file:
+                data = json.load(file)
+                
+                data['header']['contents'][0]['contents'][2]['text']= sum_point(self.line_id)    #點數
+                data['body']['contents'][0]['url'] = pie_path    #圖片url
+                
+                data['body']['contents'][1]= div[0] #數量
+                
+            with open('json/record_acc.json', 'w', encoding='utf-8') as file:
+                    json.dump(data, file)
+
+
+            pie_record = json.load(open('json/record_acc.json', 'r', encoding='utf-8'))
+
+        return(pie_record)
+

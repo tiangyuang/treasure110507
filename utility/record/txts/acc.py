@@ -9,11 +9,8 @@ from utility.record.txts.public.pie import Pie
 # //顯示累積按鈕與累積紀錄
 def acc(line_id):
     # 畫圓餅圖
-    pie = Pie('本月紀錄',line_id)
-    pie.draw_pie()
-
-    record_acc = json.load(
-        open('treasure110507/json/record_acc.json', 'r', encoding='utf-8'))
+    pie = Pie('累積紀錄',line_id)
+    pie_math=pie.draw_pie()
 
     imagemap_today = ImagemapSendMessage(
         base_url='https://i.imgur.com/g0WeLP1.png',
@@ -46,4 +43,4 @@ def acc(line_id):
             )
         ]
     )
-    return[FlexSendMessage('record_today', record_acc), imagemap_today]
+    return[FlexSendMessage('record_today', pie.pie_json(pie_math)), imagemap_today]
