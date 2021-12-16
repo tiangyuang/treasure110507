@@ -1,0 +1,16 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "40e0536d-21df-461d-ba51-27bee2ab82d7": {
+      "ProjectGuid": "40e0536d-21df-461d-ba51-27bee2ab82d7",
+      "DisplayName": "TresureAPIService",
+      "ColorIndex": 0
+    },
+    "4174170f-5356-4f2b-bf2b-2528853a7bbc": {
+      "ProjectGuid": "4174170f-5356-4f2b-bf2b-2528853a7bbc",
+      "DisplayName": "Treasure",
+      "ColorIndex": 1
+    }
+  },
+  "NextColorIndex": 2
+}

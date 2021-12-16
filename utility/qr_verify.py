@@ -126,14 +126,7 @@ def add_record(line_id, mcode, recycling_time):
         DB.run('INSERT INTO treasure_recycling_record (Record_Recycling_number , Record_LINEid , Record_Location_number , Record_Recycling_time)' 'VALUES (%d,"%s",%d,"%s")' % (
             recycling_number, line_id, location_number, recycling_time))
         # 開門
-        # open_door()
-
-        # 等待辨識的時間
-        # time.sleep(2)
-        # 查詢現在回收紀錄
-        # now = now_record(line_id)
-
-        # return now
+        open_door()
 
     else:
         return 'hhhhhhh'
