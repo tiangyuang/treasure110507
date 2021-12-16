@@ -14,7 +14,7 @@ def problem_txt(txt, line_id, problem_time):
         problem_buttons_template_message = TemplateSendMessage(
             alt_text='Buttons template',
             template=ButtonsTemplate(
-                thumbnail_image_url='https://example.com/image.jpg',
+                thumbnail_image_url='https://imgur.com/xGcNmFo.png',
                 title='描述問題',
                 text='也可以先打!再輸入文字\n例如:!無法登入',
                 actions=[
@@ -23,12 +23,12 @@ def problem_txt(txt, line_id, problem_time):
                         text='!辨識錯誤'
                     ),
                     MessageAction(
-                        label='情況2',
-                        text='!情況2'
+                        label='閘門打不開',
+                        text='!閘門打不開'
                     ),
                     MessageAction(
-                        label='情況3',
-                        text='!情況3'
+                        label='無法開啟相機',
+                        text='!無法開啟相機'
                     )
                 ]
             )

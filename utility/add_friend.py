@@ -59,7 +59,7 @@ def friend(txt, line_id=0, time=0):
         phone = txt[:10]
         name = txt[10:]
 
-        return TextSendMessage(text='請輸入您的地址')
+        return TextSendMessage(text='請輸入您的地址，ex:台北市中正區')
 
     elif txt[2] == '縣' or txt[2] == '市':
         address = txt

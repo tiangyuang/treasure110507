@@ -89,7 +89,7 @@ class Pie:
         # 畫出圓餅圖
         plt.savefig(os.path.join('static\pie', self.line_id+ptime+".jpg"))
 
-        ngrok = 'https://0f79-180-177-26-147.ngrok.io/'
+        ngrok = 'https://4c3e-115-43-154-112.ngrok.io/'
 
         pie_path = f'{ngrok}static/pie/{self.line_id}{ptime}.jpg'
         print('=================================0000000000000000000============')

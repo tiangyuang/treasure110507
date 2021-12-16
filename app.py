@@ -10,7 +10,7 @@ from utility.location import *
 from utility.problem import *
 from utility.qr_verify import *
 from utility.point import *
-from utility.door import close_door
+from utility.door import door
 # record
 from utility.record.record import *
 # ----------------------------------------------------
@@ -101,7 +101,11 @@ def handle_message(event):
     # //打開相機-----------------
     if txt == 'qrcode':
         end = json.load(open('json/confirm_end.json', 'r', encoding='utf-8'))
-        line_bot_api.reply_message(event.reply_token, [open_camera(),FlexSendMessage('record_today',end)])
+        # line_bot_api.reply_message(event.reply_token, [open_camera(),FlexSendMessage('record_today',end)])
+        line_bot_api.reply_message(event.reply_token, [FlexSendMessage('record_today',end),open_camera()])
+        
+        
+        # line_bot_api.reply_message(event.reply_token, open_camera())
 
     # //紀錄-----------------
     elif '紀錄' in txt:
@@ -109,9 +113,9 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, record_txt(txt, line_id))
 
     elif txt == '結束回收':
-        close_door()
+        door()
         
-        line_bot_api.reply_message(event.reply_token, now_record(line_id,time))
+        line_bot_api.reply_message(event.reply_token, now_record(line_id))
         
 
     # //點數-----------------
