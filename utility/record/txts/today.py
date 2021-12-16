@@ -46,8 +46,9 @@ def today(line_id):
 
 # //製作當日紀錄json
 def __json(line_id):
-    today_record = DB.run(("select d.Type_Name,b.Sub_Get_points,a.Record_Recycling_time,c.Location_Name,b.Sub_Picture from treasure_recycling_record as a join treasure_sub_record as b on a.Record_Recycling_number=b.Sub_Recycling_number join treasure_type as d on b.Sub_Type_number = d.Type_Number join treasure_erection_location as c on a.Record_Location_number=c.Location_Number where a.Record_LINEid='%s' and date(a.Record_Recycling_time) = curdate()" % (line_id)), '1')
-
+    # today_record = DB.run(("select d.Type_Name,b.Sub_Get_points,a.Record_Recycling_time,c.Location_Name,b.Sub_Picture from treasure_recycling_record as a join treasure_sub_record as b on a.Record_Recycling_number=b.Sub_Recycling_number join treasure_type as d on b.Sub_Type_number = d.Type_Number join treasure_erection_location as c on a.Record_Location_number=c.Location_Number where a.Record_LINEid='%s' and date(a.Record_Recycling_time) = curdate()" % (line_id)), '1')
+    recycle_number = DB.run(("SELECT Record_Recycling_number FROM treasure.treasure_recycling_record where Record_LINEid = '%s' order by Record_Recycling_number desc" %(line_id)),'2')[0]
+    today_record = DB.run(("select d.Type_Name,b.Sub_Get_points,a.Record_Recycling_time,c.Location_Name,b.Sub_Picture from treasure_recycling_record as a join treasure_sub_record as b on a.Record_Recycling_number=b.Sub_Recycling_number join treasure_type as d on b.Sub_Type_number = d.Type_Number join treasure_erection_location as c on a.Record_Location_number=c.Location_Number where a.Record_LINEid= '%s' and Sub_Recycling_number = '%s'" % (line_id,recycle_number)), '1')
     div = []
 
     for i in range(6):
