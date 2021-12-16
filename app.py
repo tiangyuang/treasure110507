@@ -109,7 +109,7 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, record_txt(txt, line_id))
 
     elif txt == '結束回收':
-        # close_door()
+        close_door()
         
         line_bot_api.reply_message(event.reply_token, now_record(line_id,time))
         
